@@ -1,0 +1,9 @@
+.build/
+.DS_Store
+*.log
+eval_report.html
+AGENTS.md
+.impeccable/
+docs/internal/
+__pycache__/
+.wrangler/

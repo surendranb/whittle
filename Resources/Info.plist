@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>CFBundleName</key>
+    <string>Whittle</string>
+    <key>CFBundleDisplayName</key>
+    <string>Whittle</string>
+    <key>CFBundleIdentifier</key>
+    <string>com.surendran.whittle</string>
+    <key>CFBundleVersion</key>
+    <string>0.1.0</string>
+    <key>CFBundleShortVersionString</key>
+    <string>0.1.0</string>
+    <key>CFBundleExecutable</key>
+    <string>Whittle</string>
+    <key>CFBundlePackageType</key>
+    <string>APPL</string>
+    <key>LSMinimumSystemVersion</key>
+    <string>14.0</string>
+    <key>NSHighResolutionCapable</key>
+    <true/>
+    <key>NSPhotoLibraryUsageDescription</key>
+    <string>Whittle finds bursts of similar photos so you can decide which to keep. It never deletes anything without your explicit confirmation.</string>
+    <key>CFBundleIconFile</key>
+    <string>AppIcon</string>
+    <key>NSSupportsAutomaticTermination</key>
+    <false/>
+</dict>
+</plist>

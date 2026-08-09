@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Whittle — Privacy</title>
+<meta name="description" content="What Whittle collects, what it never does, and where anonymous usage counts go.">
+<style>
+  :root {
+    --bg: #fef6e4; --ink: #001858; --muted: #5b5b5b;
+    --amber: #d98000; --card: #ffffff; --line: #e8ddc5;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; background: var(--bg); color: var(--ink);
+    font: 16px/1.6 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  }
+  .wrap { max-width: 720px; margin: 0 auto; padding: 0 24px; }
+  header {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 18px 0; border-bottom: 1px solid var(--line);
+  }
+  header a { color: var(--muted); text-decoration: none; font-size: 14px; }
+  header a:hover { color: var(--ink); }
+  .hero { text-align: center; padding: 56px 0 24px; }
+  .hero h1 { font-size: 32px; margin: 0 0 8px; letter-spacing: -.02em; }
+  .hero p { font-size: 17px; color: var(--muted); margin: 0; }
+  section { padding: 26px 0; }
+  h2 { font-size: 20px; margin: 0 0 12px; }
+  p, li { color: var(--muted); }
+  ul { padding-left: 22px; }
+  ul li { margin: 6px 0; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+  .card + .card { margin-top: 12px; }
+  .card h3 { margin: 0 0 6px; font-size: 16px; color: var(--ink); }
+  .card p { margin: 0; font-size: 14px; }
+  code { background: var(--card); border: 1px solid var(--line); border-radius: 5px; padding: 1px 6px; font-size: 14px; }
+  footer { border-top: 1px solid var(--line); padding: 22px 0 48px; color: var(--muted); font-size: 14px;
+           display: flex; justify-content: space-between; flex-wrap: wrap; gap: 8px; }
+  footer a { color: var(--muted); text-decoration: none; }
+  footer a:hover { color: var(--ink); }
+</style>
+</head>
+<body>
+<header class="wrap">
+  <span>BuildItWithAI</span>
+  <a href="/">← Whittle</a>
+</header>
+
+<div class="hero wrap">
+  <h1>Privacy</h1>
+  <p>Short version: your photos stay on your Mac, and the only data we see is anonymous counts.</p>
+</div>
+
+<section class="wrap">
+  <h2>Your photos</h2>
+  <div class="card">
+    <p>Scanning, grouping and similarity checks run entirely on your Mac. With a local model
+    (LM Studio or Ollama), nothing at all is sent anywhere. With the cloud model (Google AI
+    Studio), only small 768px JPEG copies plus measured numbers — sharpness, face count,
+    blink, tilt — are sent to Google to get a suggestion. Never originals, never names,
+    never locations. Deletion always needs your click plus macOS&rsquo;s own confirmation,
+    and photos go to Recently Deleted first.</p>
+  </div>
+</section>
+
+<section class="wrap">
+  <h2>Anonymous usage telemetry</h2>
+  <div class="card">
+    <p>Whittle sends small, anonymous event counts to improve the product. Each install gets a
+    random ID — it is not tied to your name or Apple account. The events are limited to:</p>
+    <ul>
+      <li><strong>boot</strong> — app opened, model in use</li>
+      <li><strong>scan_completed</strong> — photos scanned, groups found, library size (bucketed ranges, not exact counts)</li>
+      <li><strong>suggest_used</strong> — backend (local/cloud) and whether a suggestion succeeded or errored</li>
+      <li><strong>suggestion_decided</strong> — you accepted the suggestion or overrode it</li>
+      <li><strong>photos_deleted</strong> — number of photos and bytes freed</li>
+    </ul>
+    <p>No photo contents, filenames, faces, or your location. At most, the country you connect
+    from (e.g. <code>IN</code>) — your IP address is discarded before anything is stored.</p>
+  </div>
+  <div class="card">
+    <h3>Where it goes</h3>
+    <p>Events go through an open-source relay (<a href="https://github.com/surendranb/whittle/tree/main/whittle-worker">whittle-worker</a>)
+    that allows only the events and fields listed above — anything else is dropped at the door —
+    then to PostHog, hosted in the EU. Your IP is never forwarded and PostHog is configured to
+    discard IP data; only the country from the relay is kept.</p>
+  </div>
+  <div class="card">
+    <h3>Your choice</h3>
+    <p>Telemetry is pre-checked on first run and off is a single toggle in the app&rsquo;s footer,
+    anytime. Turning it off stops new events and clears anything waiting to be sent.</p>
+  </div>
+</section>
+
+<footer class="wrap">
+  <span>© 2026 <a href="https://builditwithai.xyz">BuildItWithAI</a> · MIT license</span>
+  <span><a href="https://github.com/surendranb/whittle">GitHub</a> · <a href="https://builditwithai.xyz">Studio</a></span>
+</footer>
+</body>
+</html>

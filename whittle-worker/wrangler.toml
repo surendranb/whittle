@@ -1,0 +1,24 @@
+name = "whittle"
+main = "src/index.ts"
+compatibility_date = "2026-08-01"
+
+# The whittle.builditwithai.xyz custom domain (zone lives on this account).
+routes = [{ pattern = "whittle.builditwithai.xyz", custom_domain = true }]
+
+[assets]
+directory = "./public"
+
+[triggers]
+crons = ["0 * * * *"]
+
+[vars]
+POSTHOG_HOST = "https://eu.i.posthog.com"
+
+[[kv_namespaces]]
+binding = "STATS"
+id = "225261a4d4e14c3082cfcb810e782293"
+
+# Secrets (wrangler secret put):
+#   POSTHOG_PROJECT_KEY  public phc_ key; also settable as a var
+#   POSTHOG_READ_KEY     read-only phx_ key (hourly stats cron; optional)
+#   POSTHOG_PROJECT_ID   numeric PostHog project id (hourly stats cron; optional)
